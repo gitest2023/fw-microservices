@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.0.1</version>
+	</parent>
+
+	<groupId>com.hdsaison.microservices</groupId>
+	<artifactId>hds-parent</artifactId>
+	<version>1.0.0</version>
+    <packaging>pom</packaging>
+
+	<properties>
+        <output.name>hds-example-service</output.name>
+        <app.version>1.0.0</app.version>
+        <spring.version>3.0.1</spring.version>
+		<java.version>17</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+		<spring-cloud.version>2022.0.0</spring-cloud.version>
+        <packing.type>jar</packing.type>
+        <repackage.skip>true</repackage.skip>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <lombok.version>1.18.24</lombok.version>
+        <springdoc.version>1.6.14</springdoc.version>
+
+        <junit.version>4.13.2</junit.version>
+        <junit.jupiter.version>5.9.2</junit.jupiter.version>
+	</properties>
+
+    <modules>
+        <module>../hds-common</module>
+        <module>../hds-service-facade</module>
+        <module>../hds-service-logic</module>
+        <module>../hds-bootstrap</module>
+        <module>../hds-web-management</module>
+        <module>../hds-batch</module>
+        <module>../hds-test</module>
+    </modules>
+
+	<dependencyManagement>
+		<dependencies>
+            <!-- Springdoc -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <!-- Lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Cloud -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+            <!-- Test -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.jupiter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit.jupiter.version}</version>
+            </dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+        <finalName>${output.name}-${project.version}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.version}</version>
+				<configuration>
+                    <outputDirectory>../.out</outputDirectory>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>netflix-candidates</id>
+			<name>Netflix Candidates</name>
+			<url>https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+</project>

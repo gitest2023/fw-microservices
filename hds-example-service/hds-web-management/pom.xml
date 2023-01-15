@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.hdsaison.microservices</groupId>
+		<artifactId>hds-parent</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../hds-parent</relativePath>
+	</parent>
+
+	<artifactId>hds-web-management</artifactId>
+    <packaging>${packing.type}</packaging>
+
+	<dependencies>
+        <!-- Shared modules -->
+        <dependency>
+            <groupId>com.hdsaison.microservices</groupId>
+            <artifactId>hds-common</artifactId>
+            <version>${app.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hdsaison.microservices</groupId>
+            <artifactId>hds-bootstrap</artifactId>
+            <version>${app.version}</version>
+        </dependency>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+            <version>${lombok.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!-- Devtools -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+       <!-- Test -->
+        <dependency>
+            <groupId>com.hdsaison.microservices</groupId>
+            <artifactId>hds-test</artifactId>
+            <version>${app.version}</version>
+            <scope>test</scope>
+        </dependency>
+	</dependencies>
+
+    <!-- <build> -->
+    <!--     <finalName>${project.artifactId}</finalName> -->
+    <!--     <plugins> -->
+    <!--         <plugin> -->
+    <!--             <groupId>org.springframework.boot</groupId> -->
+    <!--             <artifactId>spring-boot-maven-plugin</artifactId> -->
+    <!--             <configuration> -->
+    <!--                 &lt;!&ndash; <outputDirectory>../out</outputDirectory> &ndash;&gt; -->
+    <!--                 <excludes> -->
+    <!--                     <exclude> -->
+    <!--                         <groupId>org.projectlombok</groupId> -->
+    <!--                         <artifactId>lombok</artifactId> -->
+    <!--                     </exclude> -->
+    <!--                 </excludes> -->
+    <!--             </configuration> -->
+    <!--             <executions> -->
+    <!--                 <execution> -->
+    <!--                     <id>repackage</id> -->
+    <!--                     <goals> -->
+    <!--                         <goal>repackage</goal> -->
+    <!--                     </goals> -->
+    <!--                 </execution> -->
+    <!--             </executions> -->
+    <!--         </plugin> -->
+    <!--     </plugins> -->
+    <!-- </build> -->
+</project>
